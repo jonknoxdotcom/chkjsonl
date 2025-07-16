@@ -8,20 +8,18 @@ import (
 )
 
 func main() {
-	argsWithoutProg := os.Args[1:]
-
-	for _, filename := range argsWithoutProg {
+	for _, filename := range os.Args[1:] {
 		// Open file (if possible)
 		file, err := os.Open(filename)
 		if err != nil {
-			fmt.Println("Unable to locate file " + filename)
+			fmt.Println("Unable to open file " + filename)
 			continue
 		}
 		defer file.Close()
 
-		// read each line and validate
 		fmt.Print("Processing " + filename + " ")
 
+		// read each line and validate it's a valid JSON document
 		scanner := bufio.NewScanner(file)
 		lines := 1
 		for scanner.Scan() {
@@ -33,6 +31,6 @@ func main() {
 			lines++
 		}
 
-		fmt.Println("")
+		fmt.Println()
 	}
 }
