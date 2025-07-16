@@ -19,14 +19,14 @@ func main() {
 
 		fmt.Print("Processing " + filename + " ")
 
-		// read each line and validate it's a valid JSON document
+		// read each line and ensure it's a valid JSON document
 		scanner := bufio.NewScanner(file)
 		lines := 1
 		for scanner.Scan() {
-			if !json.Valid([]byte(scanner.Text())) {
-				fmt.Printf("(%d)", lines)
-			} else {
+			if json.Valid([]byte(scanner.Text())) {
 				fmt.Print(".")
+			} else {
+				fmt.Printf("(%d)", lines)
 			}
 			lines++
 		}
