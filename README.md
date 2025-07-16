@@ -19,7 +19,6 @@ Following this run, I would probably discard `example1.log` as not being a valid
 
 ## Build
 ```
-go build
+make build
 ```
-
-
+or look in `Makefile` for other options!
